@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una sorpresa para ti ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #08080d;
+    color: white;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.pantalla {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.contenido {
+    max-width: 600px;
+    width: 100%;
+    animation: aparecer 0.8s ease;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    padding: 15px 28px;
+    margin: 8px;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #ffffff;
+    color: #111;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: scale(1.07);
+}
+
+.boton-principal {
+    background: #ff4f81;
+    color: white;
+}
+
+/* PANTALLA FINAL */
+
+#revelacion {
+    position: relative;
+    background:
+        radial-gradient(circle at center, #241b08 0%, #09090d 55%, #030305 100%);
+    overflow: hidden;
+}
+
+.noche {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.08) 1px, transparent 2px),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,.08) 1px, transparent 2px),
+        radial-gradient(circle at 40% 75%, rgba(255,255,255,.07) 1px, transparent 2px);
+    background-size: 90px 90px, 130px 130px, 170px 170px;
+}
+
+/* RAMO */
+
+.ramo {
+    position: absolute;
+    width: 420px;
+    height: 520px;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+}
+
+/* TALLOS */
+
+.tallo {
+    position: absolute;
+    width: 7px;
+    height: 280px;
+    background: linear-gradient(to right, #173d1d, #3e7c35, #173d1d);
+    left: 50%;
+    bottom: 30px;
+    transform-origin: bottom;
+    border-radius: 10px;
+    opacity: 0;
+    animation: crecerTallo 2s ease forwards;
+}
+
+.tallo:nth-child(1) {
+    transform: rotate(-35deg);
+}
+
+.tallo:nth-child(2) {
+    transform: rotate(-20deg);
+}
+
+.tallo:nth-child(3) {
+    transform: rotate(-8deg);
+}
+
+.tallo:nth-child(4) {
+    transform: rotate(8deg);
+}
+
+.tallo:nth-child(5) {
+    transform: rotate(20deg);
+}
+
+.tallo:nth-child(6) {
+    transform: rotate(35deg);
+}
+
+/* FLORES */
+
+.flor {
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    opacity: 0;
+    transform: scale(0);
+    animation: florecer 1.4s cubic-bezier(.17,.67,.25,1.25) forwards;
+}
+
+.flor:nth-child(7) {
+    left: 32px;
+    top: 80px;
+    animation-delay: 2s;
+}
+
+.flor:nth-child(8) {
+    left: 105px;
+    top: 25px;
+    animation-delay: 2.4s;
+}
+
+.flor:nth-child(9) {
+    left: 170px;
+    top: 70px;
+    animation-delay: 2.8s;
+}
+
+.flor:nth-child(10) {
+    left: 245px;
+    top: 30px;
+    animation-delay: 3.2s;
+}
+
+.flor:nth-child(11) {
+    left: 300px;
+    top: 90px;
+    animation-delay: 3.6s;
+}
+
+.flor:nth-child(12) {
+    left: 120px;
+    top: 120px;
+    animation-delay: 4s;
+}
+
+/* PÉTALOS */
+
+.petalo {
+    position: absolute;
+    width: 38px;
+    height: 55px;
+    background: #ffd21f;
+    border-radius: 50% 50% 45% 45%;
+    left: 50%;
+    top: 50%;
+    transform-origin: 50% 100%;
+    box-shadow: 0 0 15px rgba(255,210,31,.45);
+}
+
+.petalo:nth-child(1) {
+    transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.petalo:nth-child(2) {
+    transform: translate(-50%, -100%) rotate(60deg);
+}
+
+.petalo:nth-child(3) {
+    transform: translate(-50%, -100%) rotate(120deg);
+}
+
+.petalo:nth-child(4) {
+    transform: translate(-50%, -100%) rotate(180deg);
+}
+
+.petalo:nth-child(5) {
+    transform: translate(-50%, -100%) rotate(240deg);
+}
+
+.petalo:nth-child(6) {
+    transform: translate(-50%, -100%) rotate(300deg);
+}
+
+.centro {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #9b6500;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px rgba(255,180,0,.7);
+}
+
+/* BRILLOS */
+
+.brillo {
+    position: absolute;
+    color: #fff5a3;
+    font-size: 20px;
+    opacity: 0;
+    animation: brillo 2s ease infinite;
+}
+
+.brillo:nth-child(1) {
+    left: 10%;
+    top: 20%;
+    animation-delay: 5s;
+}
+
+.brillo:nth-child(2) {
+    left: 80%;
+    top: 25%;
+    animation-delay: 5.5s;
+}
+
+.brillo:nth-child(3) {
+    left: 20%;
+    top: 65%;
+    animation-delay: 6s;
+}
+
+.brillo:nth-child(4) {
+    left: 75%;
+    top: 70%;
+    animation-delay: 6.5s;
+}
+
+/* MENSAJE */
+
+.mensaje-final {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 650px;
+    text-align: center;
+    opacity: 0;
+    animation: mensaje 2s ease forwards;
+    animation-delay: 7s;
+    z-index: 20;
+}
+
+.mensaje-final h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ffd83d;
+    text-shadow: 0 0 15px rgba(255,216,61,.5);
+}
+
+.mensaje-final p {
+    font-size: 1.1rem;
+    color: white;
+    text-shadow: 0 2px 5px black;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes crecerTallo {
+    from {
+        height: 0;
+        opacity: 0;
+    }
+
+    to {
+        height: 280px;
+        opacity: 1;
+    }
+}
+
+@keyframes florecer {
+    from {
+        opacity: 0;
+        transform: scale(0) rotate(-20deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes brillo {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes mensaje {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .ramo {
+        transform: translateX(-50%) scale(.75);
+        bottom: 10%;
+    }
+
+    .mensaje-final {
+        bottom: 3%;
+    }
+
+    .mensaje-final h2 {
+        font-size: 1.6rem;
+    }
+
+    .mensaje-final p {
+        font-size: .95rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- MÚSICA -->
+<!-- ========================= -->
+
+<audio id="musica" src="cancion.mp3" preload="auto"></audio>
+
+
+<!-- ========================= -->
+<!-- PREGUNTA 1 -->
+<!-- ========================= -->
+
+<section id="pregunta1" class="pantalla">
+
+    <div class="contenido">
+
+        <h1>Antes de continuar... 👀</h1>
+
+        <p>
+            Necesito comprobar algo primero.
+        </p>
+
+        <button onclick="respuesta1('correcta')">
+            Freddy
+        </button>
+
+        <button onclick="respuesta1('incorrecta')">
+            Carlos
+        </button>
+
+        <button onclick="respuesta1('incorrecta')">
+            Juan
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- PREGUNTA 2 -->
+<!-- ========================= -->
+
+<section id="pregunta2" class="pantalla oculto">
+
+    <div class="contenido">
+
+        <h1>Muy bien... 😏</h1>
+
+        <p>
+            Ahora dime quién preparó todo esto.
+        </p>
+
+        <button onclick="respuesta2('correcta')">
+            Tu novio
+        </button>
+
+        <button onclick="respuesta2('incorrecta')">
+            Un desconocido
+        </button>
+
+        <button onclick="respuesta2('incorrecta')">
+            El FBI
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- PREGUNTA FINAL -->
+<!-- ========================= -->
+
+<section id="pregunta3" class="pantalla oculto">
+
+    <div class="contenido">
+
+        <h1>Última pregunta...</h1>
+
+        <p>
+            ¿Estás lista para descubrir lo que preparé para ti?
+        </p>
+
+        <button class="boton-principal" onclick="mostrarRamo()">
+            Sí, quiero verlo ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- REVELACIÓN -->
+<!-- ========================= -->
+
+<section id="revelacion" class="pantalla oculto">
+
+    <div class="noche"></div>
+
+    <!-- Brillos -->
+
+    <div class="brillo">✦</div>
+    <div class="brillo">✧</div>
+    <div class="brillo">✦</div>
+    <div class="brillo">✧</div>
+
+
+    <!-- RAMO -->
+
+    <div class="ramo">
+
+        <!-- Tallos -->
+
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+        <div class="tallo"></div>
+
+
+        <!-- Flor 1 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Flor 2 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Flor 3 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Flor 4 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Flor 5 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+
+        <!-- Flor 6 -->
+
+        <div class="flor">
+
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+            <div class="petalo"></div>
+
+            <div class="centro"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- MENSAJE EDITABLE -->
+    <!-- ========================= -->
+
+    <div class="mensaje-final">
+
+        <h2>Para ti, Jeimy ❤️</h2>
+
+        <p id="mensaje"></p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   ✏️ ESCRIBE AQUÍ TU MENSAJE
+   =====================================================
+
+   Puedes cambiar solamente lo que está entre las
+   comillas de MENSAJE.
+
+   No borres las comillas `
+
+===================================================== */
+
+const MENSAJE = `
+Quería hacerte algo diferente, algo que apareciera
+poco a poco, igual que muchas de las cosas bonitas
+que hemos construido juntos.
+
+Espero que cuando veas esto sonrías y recuerdes
+lo importante que eres para mí.
+
+Te amo muchísimo, Jeimy. ❤️
+
+Con amor,
+Freddy.
+`;
+
+
+/* =====================================================
+   PREGUNTA 1
+===================================================== */
+
+function respuesta1(respuesta) {
+
+    if (respuesta === "correcta") {
+
+        document.getElementById("pregunta1")
+        .classList.add("oculto");
+
+        document.getElementById("pregunta2")
+        .classList.remove("oculto");
+
+    } else {
+
+        alert("Mmm... piensa bien 😏");
+
+    }
+
+}
+
+
+/* =====================================================
+   PREGUNTA 2
+===================================================== */
+
+function respuesta2(respuesta) {
+
+    if (respuesta === "correcta") {
+
+        document.getElementById("pregunta2")
+        .classList.add("oculto");
+
+        document.getElementById("pregunta3")
+        .classList.remove("oculto");
+
+    } else {
+
+        alert("No creo que sea el FBI 😂");
+
+    }
+
+}
+
+
+/* =====================================================
+   REVELACIÓN
+===================================================== */
+
+function mostrarRamo() {
+
+    /* Ocultar última pregunta */
+
+    document.getElementById("pregunta3")
+    .classList.add("oculto");
+
+
+    /* Mostrar revelación */
+
+    document.getElementById("revelacion")
+    .classList.remove("oculto");
+
+
+    /* Colocar mensaje */
+
+    document.getElementById("mensaje")
+    .innerHTML = MENSAJE.replace(/\n/g, "<br>");
+
+
+    /* ==============================================
+       🎵 INICIAR MÚSICA AUTOMÁTICAMENTE
+       ============================================== */
+
+    const musica = document.getElementById("musica");
+
+    musica.currentTime = 0;
+
+    musica.play().catch(function(error) {
+
+        console.log("El navegador bloqueó el audio:", error);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
